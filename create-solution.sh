@@ -8,28 +8,41 @@ cd ..
 mkdir "$1.Solution"
 cd ./$1.Solution/
 
+mkdir Commands
+
+cd ./Commands/
+
 touch clear.sh
 touch commit.sh
 touch fresh.sh
 touch run.sh
+touch test.sh
 
-echo "rm -rf ./$1/bin/
+echo "cd ..
+rm -rf ./$1/bin/
 rm -rf ./$1/obj/
-./fresh.sh" > clear.sh
+rm -rf ./$1.Tests/bin/
+rm -rf ./$1.Tests/obj/
+./Commands/fresh.sh" > clear.sh
 
-echo "git add .
+echo "cd ..
+git add .
 git-pair-commit -m \"\$1\"" > commit.sh
 
-echo "dotnet restore ./$1
-dotnet build ./$1" > fresh.sh
+echo "cd ..
+dotnet restore ./$1
+dotnet build ./$1
+dotnet restore ./$1.Tests/" > fresh.sh
 
-echo "cd $1/
+echo "cd ../$1/
 dotnet run" > run.sh
 
-chmod 755 ./clear.sh
-chmod 755 ./commit.sh
-chmod 755 ./fresh.sh
-chmod 755 ./run.sh
+echo "cd ../$1.Tests/
+dotnet test" > test.sh
+
+chmod 755 *.sh
+
+cd ..
 
 touch README.md
 dotnet new mvc -lang "C#" -f "netcoreapp1.1" -n "$1"
@@ -41,3 +54,8 @@ dotnet restore
 mkdir Models
 touch ./Controllers/HomeController.cs
 touch ./Models/Template.cs
+
+cd ..
+dotnet new mstest -lang "C#" -f "netcoreapp1.1" -n "$1.Tests"
+# cd ./$1.Tests/
+# dotnet add ./$1.Tests.csproj reference ..\\$1\\$1.csproj
