@@ -8,6 +8,11 @@ cd ..
 mkdir "$1.Solution"
 cd ./$1.Solution/
 
+touch .gitignore
+echo "bin/
+obj/
+" > .gitignore
+
 mkdir Commands
 
 cd ./Commands/
