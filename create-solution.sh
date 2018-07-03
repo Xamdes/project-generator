@@ -32,14 +32,12 @@ chmod 755 ./fresh.sh
 chmod 755 ./run.sh
 
 touch README.md
-dotnet new web -lang "C#" -f "netcoreapp1.1" -n "$1"
+dotnet new mvc -lang "C#" -f "netcoreapp1.1" -n "$1"
 cd ./$1/
 dotnet add "$1.csproj" package Microsoft.AspNetCore.Http -v 1.1.2
 dotnet add "$1.csproj" package Microsoft.AspNetCore.Mvc -v 1.1.3
 dotnet add "$1.csproj" package Microsoft.AspNetCore.StaticFiles -v 1.1.3
 dotnet restore
-mkdir Controllers Models Views ./wwwroot/css ./wwwroot/js
-mkdir ./Views/Home
-touch ./Views/Home/template.cshtml
+mkdir Models
 touch ./Controllers/HomeController.cs
-touch ./Models/template.cs
+touch ./Models/Template.cs
