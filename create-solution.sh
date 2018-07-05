@@ -32,7 +32,16 @@ rm -rf ./$1.Tests/obj/
 
 echo "cd ..
 git add .
-git-pair-commit -m \"\$1\"" > commit.sh
+
+if [ "-s" = "$1" ]
+then
+  git commit -m "$2"
+fi
+
+if [ "-p" = "$1" ]
+then
+  git-pair-commit -m "$2"
+fi" > commit.sh
 
 echo "cd ..
 dotnet restore ./$1
@@ -48,6 +57,8 @@ dotnet test" > test.sh
 chmod 755 *.sh
 
 cd ..
+
+git init
 
 touch README.md
 dotnet new mvc -lang "C#" -f "netcoreapp1.1" -n "$1"
