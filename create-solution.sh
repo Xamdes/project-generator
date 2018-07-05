@@ -33,14 +33,14 @@ rm -rf ./$1.Tests/obj/
 echo "cd ..
 git add .
 
-if [ "-s" = "$1" ]
+if [ -s = \"\$1\" ]
 then
-  git commit -m "$2"
+  git commit -m \"\$2\"
 fi
 
-if [ "-p" = "$1" ]
+if [ -p = \"\$1\" ]
 then
-  git-pair-commit -m "$2"
+  git-pair-commit -m \"\$2\"
 fi" > commit.sh
 
 echo "cd ..
