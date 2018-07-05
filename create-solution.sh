@@ -73,5 +73,6 @@ touch ./Models/Template.cs
 
 cd ..
 dotnet new mstest -lang "C#" -f "netcoreapp1.1" -n "$1.Tests"
-# cd ./$1.Tests/
-# dotnet add ./$1.Tests.csproj reference ..\\$1\\$1.csproj
+
+cd ./$1.Tests/
+dotnet add ./$1.Tests.csproj reference ../$1/$1.csproj
