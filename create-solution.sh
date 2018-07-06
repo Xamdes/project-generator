@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # To Run a Command go to location and type ./(command)
 # Example:
 # cd Commands
