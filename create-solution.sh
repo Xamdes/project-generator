@@ -24,14 +24,16 @@ touch fresh.sh
 touch run.sh
 touch test.sh
 
-echo "cd ..
+echo "#!/usr/bin/env bash
+cd ..
 rm -rf ./$1/bin/
 rm -rf ./$1/obj/
 rm -rf ./$1.Tests/bin/
 rm -rf ./$1.Tests/obj/
 ./Commands/fresh.sh" > clear.sh
 
-echo "cd ..
+echo "#!/usr/bin/env bash
+cd ..
 git add .
 
 if [ -s = \"\$1\" ]
@@ -44,15 +46,18 @@ then
   git-pair-commit -m \"\$2\"
 fi" > commit.sh
 
-echo "cd ..
+echo "#!/usr/bin/env bash
+cd ..
 dotnet restore ./$1
 dotnet build ./$1
 dotnet restore ./$1.Tests/" > fresh.sh
 
-echo "cd ../$1/
+echo "#!/usr/bin/env bash
+cd ../$1/
 dotnet run" > run.sh
 
-echo "cd ../$1.Tests/
+echo "#!/usr/bin/env bash
+cd ../$1.Tests/
 dotnet test" > test.sh
 
 chmod 755 *.sh
@@ -67,6 +72,7 @@ cd ./$1/
 dotnet add "$1.csproj" package Microsoft.AspNetCore.Http -v 1.1.2
 dotnet add "$1.csproj" package Microsoft.AspNetCore.Mvc -v 1.1.3
 dotnet add "$1.csproj" package Microsoft.AspNetCore.StaticFiles -v 1.1.3
+dotnet add "$1.csproj" package MySqlConnector
 dotnet restore
 mkdir Models
 touch ./Controllers/HomeController.cs
