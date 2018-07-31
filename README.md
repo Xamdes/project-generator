@@ -14,14 +14,17 @@
     * Run Programs:
       * ./[Command Name] [Parameters]
     * create-solution.sh takes project name and creates file structure for project
-      * Only works for mac currently
+      * Requires templates for dotnetcore1.1
     * install-cshtml.sh
       * Install package for atom to use razor styling
-    * solo.sh
+    * solo.sh "Name1" "Email1"
       * takes name and email parameters to setup git for solo works
-    * pair.sh
+    * pair.sh "Name1" "Email1" "Name2" "Email2"
       * takes name email parameter for partners
       * nameOne emailOne nameTwo emailTwo
+    * js-proj-setup.sh
+      * Takes a single parameter as the project name
+      * Creates a javascript web project
     * Please ignore other sh files for now
 
 ## License

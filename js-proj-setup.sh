@@ -25,12 +25,12 @@ dist/
 
 mkdir Commands
 mkdir spec
-touch ./spec/"$1"-spec.js
+
 mkdir src
 touch ./src/index.html
 touch ./src/main.js
 touch ./src/$1.js
-touch ./src/style.css
+touch ./src/styles.css
 touch README.md
 
 cd ./Commands/
@@ -57,9 +57,9 @@ cd ..
 git init
 npm init -y
 
-npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 karma@2.0.0 karma-jasmine@1.1.1 karma-chrome-launcher@2.2.0  karma-cli@1.0.1 karma-webpack@2.0.13  karma-jquery@0.2.2 karma-jasmine-html-reporter@0.2.2 --save-dev
+npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 karma@2.0.0 karma-jasmine@1.1.1 karma-chrome-launcher@2.2.0  karma-cli@1.0.1 karma-webpack@2.0.13  karma-jquery@0.2.2 karma-jasmine-html-reporter@0.2.2 webpack-dev-middleware@3.1.0 hoek@5.0.3 -f --save-dev
 
-npm install jquery popper.js bootstrap karma-cli --save
+npm install jquery popper.js bootstrap karma-cli -f --save
 
 echo "const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -386,3 +386,25 @@ echo "{
     'no-debugger': 'warn'
   }
 }" > .eslintrc
+
+touch ./spec/"$1"-spec.js
+
+echo "import { $1 } from './../src/$1';
+describe('Temp', function()
+{
+  var temp;
+
+  beforeEach(function() {
+    temp = "";
+  });
+
+  it('should show how beforeEach() works', function() {
+    console.log(temp);
+  });
+
+  it('sample test', function() {
+    tempRoman.Set(3);
+    expect(tempRoman.GetRomanNumeral()).toEqual("III");
+  });
+
+});" > ./spec/"$1"-spec.js
