@@ -4,6 +4,14 @@
 # cd Commands
 # ./create-solution.sh
 
+# karma init
+
+# Put under scripts in package.json
+# "build": "webpack --mode development",
+# "start": "npm run build; webpack-dev-server --open --mode development",
+# "lint": "eslint src/*.js",
+# "jamsine": "jasmine",
+# "test": "karma start karma.conf.js"
 
 cd ..
 mkdir "$1"
@@ -16,6 +24,14 @@ dist/
 " > .gitignore
 
 mkdir Commands
+mkdir spec
+touch ./spec/"$1"-spec.js
+mkdir src
+touch ./src/index.html
+touch ./src/main.js
+touch ./src/$1.js
+touch ./src/style.css
+touch README.md
 
 cd ./Commands/
 
@@ -41,11 +57,9 @@ cd ..
 git init
 npm init -y
 
-touch README.md
+npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 karma@2.0.0 karma-jasmine@1.1.1 karma-chrome-launcher@2.2.0  karma-cli@1.0.1 karma-webpack@2.0.13  karma-jquery@0.2.2 karma-jasmine-html-reporter@0.2.2 --save-dev
 
-npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 --save-dev
-
-npm install jquery popper.js bootstrap --save
+npm install jquery popper.js bootstrap karma-cli --save
 
 echo "const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -90,18 +104,15 @@ module.exports =
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
+        exclude: [
+          /node_modules/,
+          /spec/
+        ],
+        loader: 'eslint-loader'
       }
     ]
   }
 };" > webpack.config.js
-
-mkdir src
-touch ./src/index.html
-touch ./src/main.js
-touch ./src/$1.js
-touch ./src/style.css
 
 echo "import {  } from './$1';
 import 'bootstrap';
@@ -111,7 +122,7 @@ import './styles.css';
 \$(function()
 {
 });
-" > src/main.js
+" > ./src/main.js
 
 echo "<!DOCTYPE html>
 <html>
@@ -122,4 +133,256 @@ echo "<!DOCTYPE html>
 
 </body>
 </html>
-" > src/index.html
+" > ./src/index.html
+
+echo "const webpackConfig = require('./webpack.config.js');
+
+module.exports = function(config) {
+  config.set({
+    basePath: '',
+    frameworks: ['jquery-3.2.1', 'jasmine'],
+    files: [
+      'src/*.js',
+      'spec/*spec.js'
+    ],
+    webpack: webpackConfig,
+    exclude: [
+    ],
+    preprocessors: {
+      'src/*.js': ['webpack'],
+      'spec/*spec.js': ['webpack']
+    },
+    plugins: [
+      'karma-jquery',
+      'karma-webpack',
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter'
+    ],
+    reporters: ['progress', 'kjhtml'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false,
+    concurrency: Infinity
+  })
+}
+" > karma.conf.js
+
+
+echo "## GITATTRIBUTES FOR WEB PROJECTS
+#
+# Found from https://github.com/alexkaratarakis/gitattributes
+# These settings are for any web project.
+#
+# Details per file setting:
+#   text    These files should be normalized (i.e. convert CRLF to LF).
+#   binary  These files are binary and should be left untouched.
+#
+# Note that binary is a macro for -text -diff.
+######################################################################
+
+## AUTO-DETECT
+##   Handle line endings automatically for files detected as
+##   text and leave all files detected as binary untouched.
+##   This will handle all files NOT defined below.
+* text=auto
+
+## SOURCE CODE
+*.bat      text eol=crlf
+*.coffee   text
+*.css      text
+*.htm      text
+*.html     text
+*.inc      text
+*.ini      text
+*.js       text
+*.json     text
+*.jsx      text
+*.less     text
+*.od       text
+*.onlydata text
+*.php      text
+*.pl       text
+*.py       text
+*.rb       text
+*.sass     text
+*.scm      text
+*.scss     text
+*.sh       text eol=lf
+*.sql      text
+*.styl     text
+*.tag      text
+*.ts       text
+*.tsx      text
+*.xml      text
+*.xhtml    text
+
+## DOCKER
+*.dockerignore    text
+Dockerfile    text
+
+## DOCUMENTATION
+*.markdown   text
+*.md         text
+*.mdwn       text
+*.mdown      text
+*.mkd        text
+*.mkdn       text
+*.mdtxt      text
+*.mdtext     text
+*.txt        text
+AUTHORS      text
+CHANGELOG    text
+CHANGES      text
+CONTRIBUTING text
+COPYING      text
+copyright    text
+*COPYRIGHT*  text
+INSTALL      text
+license      text
+LICENSE      text
+NEWS         text
+readme       text
+*README*     text
+TODO         text
+
+## TEMPLATES
+*.dot        text
+*.ejs        text
+*.haml       text
+*.handlebars text
+*.hbs        text
+*.hbt        text
+*.jade       text
+*.latte      text
+*.mustache   text
+*.njk        text
+*.phtml      text
+*.tmpl       text
+*.tpl        text
+*.twig       text
+
+## LINTERS
+.csslintrc    text
+.eslintrc     text
+.htmlhintrc   text
+.jscsrc       text
+.jshintrc     text
+.jshintignore text
+.stylelintrc  text
+
+## CONFIGS
+*.bowerrc      text
+*.cnf          text
+*.conf         text
+*.config       text
+.browserslistrc    text
+.editorconfig  text
+.gitattributes text
+.gitconfig     text
+.htaccess      text
+*.npmignore    text
+*.yaml         text
+*.yml          text
+browserslist   text
+Makefile       text
+makefile       text
+
+## HEROKU
+Procfile    text
+.slugignore text
+
+## GRAPHICS
+*.ai   binary
+*.bmp  binary
+*.eps  binary
+*.gif  binary
+*.ico  binary
+*.jng  binary
+*.jp2  binary
+*.jpg  binary
+*.jpeg binary
+*.jpx  binary
+*.jxr  binary
+*.pdf  binary
+*.png  binary
+*.psb  binary
+*.psd  binary
+*.svg  text
+*.svgz binary
+*.tif  binary
+*.tiff binary
+*.wbmp binary
+*.webp binary
+
+## AUDIO
+*.kar  binary
+*.m4a  binary
+*.mid  binary
+*.midi binary
+*.mp3  binary
+*.ogg  binary
+*.ra   binary
+
+## VIDEO
+*.3gpp binary
+*.3gp  binary
+*.as   binary
+*.asf  binary
+*.asx  binary
+*.fla  binary
+*.flv  binary
+*.m4v  binary
+*.mng  binary
+*.mov  binary
+*.mp4  binary
+*.mpeg binary
+*.mpg  binary
+*.ogv  binary
+*.swc  binary
+*.swf  binary
+*.webm binary
+
+## ARCHIVES
+*.7z  binary
+*.gz  binary
+*.jar binary
+*.rar binary
+*.tar binary
+*.zip binary
+
+## FONTS
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
+
+## EXECUTABLES
+*.exe binary
+*.pyc binary
+" > .gitattributes
+
+echo "{
+  'parserOptions': {
+    'ecmaVersion': 6,
+    'sourceType': 'module'
+  },
+  'extends': 'eslint:recommended',
+  'env': {
+    'es6': true,
+    'browser': true,
+    'jquery': true,
+    'node': true,
+    'jasmine': true
+  },
+  'rules': {
+    'semi': 1,
+    'indent': ['warn', 2],
+    'no-console': 'warn',
+    'no-debugger': 'warn'
+  }
+}" > .eslintrc
