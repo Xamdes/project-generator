@@ -87,11 +87,16 @@ module.exports =
     }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: '[Program Name]',
+      title: '$1',
       template: './src/index.html',
       inject: 'body'
     })
   ],
+  performance:
+  {
+    hints: false
+  },
+  mode: 'development',
   module:
   {
     rules: [
@@ -383,13 +388,14 @@ echo "{
     'semi': 1,
     'indent': ['warn', 2],
     'no-console': 'warn',
-    'no-debugger': 'warn'
+    'no-debugger': 'warn',
+    'no-unused-vars': 'warn'
   }
 }" > .eslintrc
 
 touch ./spec/"$1"-spec.js
 
-echo "import { $1 } from './../src/$1';
+echo "import { } from './../src/$1';
 describe('Temp', function()
 {
   var temp;
@@ -403,8 +409,7 @@ describe('Temp', function()
   });
 
   it('sample test', function() {
-    tempRoman.Set(3);
-    expect(tempRoman.GetRomanNumeral()).toEqual("III");
+    expect(true).toEqual(true);
   });
 
 });" > ./spec/"$1"-spec.js
