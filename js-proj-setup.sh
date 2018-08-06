@@ -404,6 +404,9 @@ describe('Temp', function()
     temp = "";
   });
 
+  afterEach(function() {
+  });
+
   it('should show how beforeEach() works', function() {
     console.log(temp);
   });
