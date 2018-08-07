@@ -13,7 +13,9 @@ cd ./$1/
 touch .gitignore
 echo "node_modules/
 .DS_Store
+build/
 dist/
+.env
 " > .gitignore
 
 mkdir Commands
@@ -86,12 +88,58 @@ module.exports =
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
+  //eval-source-map for development
+  //source-map for production
   devServer: {
     contentBase: './dist'
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+        uglifyOptions: {
+          ecma: 8,
+          compress: {
+            arrows: true,
+            booleans: true,
+            collapse_vars: false,
+            comparisons: true,
+            computed_props: true,
+            conditionals: true,
+            dead_code: true,
+            drop_console: false,
+            ecma: 6,
+            evaluate: true,
+            hoist_funs: false,
+            hoist_props: false,
+            //hoist_var tends to increase file size if enabled
+            hoist_vars: false,
+            if_return: true,
+            inline: 1,
+            join_vars: true,
+            keep_infinity: true,
+            loops: true,
+            negate_iife: false,
+            passes: 3,
+            properties: false,
+            reduce_funcs: true,
+            reduce_vars: true,
+            sequences: 5,
+            side_effects: false,
+            switches: true,
+            toplevel: false,
+            top_retain: true,
+            typeofs: false,
+            unsafe: false,
+            unused: false,
+            warnings: false,
+          },
+        }
+      })
+    ]
+  },
   plugins: [
-    new UglifyJsPlugin({sourceMap: true}),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
