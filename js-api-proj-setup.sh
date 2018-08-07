@@ -70,7 +70,7 @@ echo "{
 }
 " > package.json
 
-npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 karma@2.0.0 karma-jasmine@1.1.1 karma-chrome-launcher@2.2.0  karma-cli@1.0.1 karma-webpack@2.0.13  karma-jquery@0.2.2 karma-jasmine-html-reporter@0.2.2 webpack-dev-middleware@3.1.0 hoek@5.0.3 karma-eslint -f --save-dev
+npm install webpack@4.0.1 webpack-cli@2.0.9 style-loader@0.20.2 css-loader@0.28.10 html-webpack-plugin@3.0.6 clean-webpack-plugin@0.1.18 uglifyjs-webpack-plugin@1.2.2 webpack-dev-server@3.1.0 eslint@4.18.2 eslint-loader@2.0.0 jasmine-core@2.99.0 jasmine@3.1.0 karma@2.0.0 karma-jasmine@1.1.1 karma-chrome-launcher@2.2.0  karma-cli@1.0.1 karma-webpack@2.0.13  karma-jquery@0.2.2 karma-jasmine-html-reporter@0.2.2 webpack-dev-middleware@3.1.0 hoek@5.0.3 karma-eslint dotenv-webpack -f --save-dev
 
 npm install jquery popper.js bootstrap karma-cli -f --save
 
@@ -79,6 +79,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports =
 {
@@ -149,7 +150,8 @@ module.exports =
       title: '$1',
       template: './src/index.html',
       inject: 'body'
-    })
+    }),
+    new Dotenv()
   ],
   performance:
   {
@@ -483,6 +485,10 @@ echo "# Project: $1
 ## Specs
 
 ## Helpful to Remember
+  * Use process.env.API_KEY for API Keys
+  * .env File in Root Directory
+    * API_KEY=[API_KEY GOES HERE]
+    * OTHER_API_KEY=[OTHER API_KEY GOES HERE]
 
 ## License
 " > README.md
