@@ -45,6 +45,17 @@ then
   git-pair-commit -m \"\$2\"
 fi" > commit.sh
 
+touch create-env.sh
+
+echo "#!/usr/bin/env bash
+touch .env
+echo \" API_KEY = \$1
+\" > .env
+* .env File in Root Directory
+  * API_KEY=[API_KEY GOES HERE]
+" > create-env.sh
+  
+
 chmod 755 *.sh
 
 cd ..
