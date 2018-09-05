@@ -32,6 +32,7 @@ echo "{
     \"prop-types\": \"^15.5.10\",
     \"react\": \"^15.5.4\",
     \"react-dom\": \"^15.5.4\",
+    \"styled-jsx\": \"^3.0.2\",
     \"webpack\": \"^4.17.2\"
   },
   \"devDependencies\": {
@@ -65,39 +66,24 @@ echo "#!/usr/bin/env bash
 
 cd ./src/components
 
-echo \"import React from \\\"react\\\";
-//import PropTypes from \\\"prop-types\\\";
+echo \"import styled from 'styled-components';
 
 function \$1(){
   return (
-    <div>
-      Insert Code Here
-    </div>
+    <Main>
+      <h1>\$1</h1>
+    </Main>
   );
 }
-/*
-\$1.propTypes = {
-  example: PropTypes.string,
-};
-*/
+
+const Main = styled.div\\\`
+  backgroundColor: #ecf0f1;
+  fontFamily: sans-serif;
+  paddingTop: 50px;
+  \\\`
+;
 
 export default \$1;
-
-/*
-propTypes Examples
-exampleArray: PropTypes.array,
-exampleBoolean: PropTypes.bool,
-exampleFunction: PropTypes.func,
-exampleNumber: PropTypes.number,
-exampleObject: PropTypes.object,
-exampleString: PropTypes.string,
-exampleSymbol: PropTypes.symbol,
-exampleReactElement: PropTypes.element,
-exampleArrayOfNumbers: PropTypes.arrayOf(PropTypes.number),
-exampleArrayOfStrings: PropTypes.arrayOf(PropTypes.string),
-exampleClassTypeProp: PropTypes.instanceOf(ExampleClassName),
-optionalEnum: PropTypes.oneOf(['ExampleClass', 'AnotherExampleClass']),
-*/
 \" > \"\$1.jsx\"
 " > ./bin/generate-component.sh
 
@@ -119,12 +105,6 @@ npm install
 npm run gen App
 
 echo "import 'bootstrap/dist/css/bootstrap.min.css';
-/*eslint-disable */
-import $ from 'jquery';
-import Popper from 'popper.js';
-/*eslint-enable */
-import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
 
@@ -224,6 +204,24 @@ module.exports = {
     publicPath: '/'
   },
 
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      Popper: 'popper.js',
+      React: 'react',
+      ReactDOM: 'react-dom'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new HtmlWebpackPlugin({
+      template:'template.ejs',
+      appMountId: 'react-app-root',
+      title: 'React Help Queue',
+      filename: resolve(__dirname, 'build', 'index.html'),
+    }),
+  ],
+
   module: {
     rules: [
       {
@@ -246,7 +244,8 @@ module.exports = {
             '@babel/preset-env'
           ],
           plugins: [
-            'react-hot-loader/babel'
+            'react-hot-loader/babel',
+            'styled-jsx/babel'
           ]
         }
       },
@@ -255,23 +254,18 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       }
     ],
-  },
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({
-      template:'template.ejs',
-      appMountId: 'react-app-root',
-      title: 'React Help Queue',
-      filename: resolve(__dirname, 'build', 'index.html'),
-    }),
-  ]
-
+  }
 };
 " > webpack.config.js
 
 echo "{
+  \"globals\": {
+    \"ReactDOM\": true,
+    \"$\": true,
+    \"jQuery\": true,
+    \"Popper\": true,
+    \"React\": true
+  },
   \"env\": {
     \"browser\": true,
     \"es6\": true,
@@ -290,6 +284,7 @@ echo "{
     \"react\"
   ],
   \"rules\": {
+    \"react/jsx-key\": 2,
     \"react/jsx-uses-vars\": 2,
     \"react/jsx-uses-react\": 2,
     \"react/jsx-no-duplicate-props\": 2,
@@ -320,7 +315,61 @@ echo "{
     \"semi\": [
       \"error\",
       \"always\"
-    ]
+    ],
+    \"no-unused-vars\": 1
   }
 }
 " > .eslintrc.json
+
+
+echo "
+**Use as Needed for Components**
+* import PropTypes from 'prop-types';
+* import styled from 'styled-components';
+
+**Prop Type Examples**
+
+\`\`\`
+[component-name].propTypes = {
+ [variable-name]: PropTypes.string,
+};
+\`\`\`
+
+exampleArray: PropTypes.array,
+exampleBoolean: PropTypes.bool,
+exampleFunction: PropTypes.func,
+exampleNumber: PropTypes.number,
+exampleObject: PropTypes.object,
+exampleString: PropTypes.string,
+exampleSymbol: PropTypes.symbol,
+exampleReactElement: PropTypes.element,
+exampleArrayOfNumbers: PropTypes.arrayOf(PropTypes.number),
+exampleArrayOfStrings: PropTypes.arrayOf(PropTypes.string),
+exampleClassTypeProp: PropTypes.instanceOf(ExampleClassName),
+optionalEnum: PropTypes.oneOf(['ExampleClass', 'AnotherExampleClass']),
+
+**Styled Examples**
+
+\`\`\`
+<Main className=\"card\">
+  <ButtonTest className=\"btn\"Test</ButtonTest
+</Main>
+\`\`\`
+\`\`\`
+const ButtonTest = styled.button\`
+  background-color: red;
+  &:hover \${ButtonTest}
+  {
+    background-color: teal;
+  }
+\`;
+\`\`\`
+\`\`\`
+const Main = styled.div\`
+  backgroundColor: #ecf0f1;
+  fontFamily: sans-serif;
+  paddingTop: 50px;
+  \`
+;
+\`\`\`
+" > ./src/components/README.md
