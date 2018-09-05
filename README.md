@@ -6,11 +6,37 @@
 
 ## Instructions
 
-  * Commands for making things easier
-    * Use npm run [command] [parameters]
+  * Use npm run [command] [parameters]
 
-  *Command List*
-  *
+  **Command List**  
+
+  * atom
+    * adds packages to atom
+  * commit
+    * commits to this projects git
+  * git-config
+    * sets configuration locally for this projects git
+  * git-global-config
+    * sets the global git configuration for the user
+  * pair [user-one user-one-email user-two user-two-email]
+    * Creates a pairing file for git
+    * Wrap user-one and user-two in singles quotes for full names
+  * unset-global-git
+    * unsets the global configuration for git username and email
+
+  **Project Setup**  
+
+  * angular [project-name]
+    * Angular project setup
+  * solution [project-name]
+    * Microsoft ASP.NET solution project setup
+  * javascript [project-name]
+    * Javascript setup
+  * javascript-api [project-name]
+    * Javascript setup using an api
+  * react [project-name]
+    * React project setup
+    * Setup includes using bootstrap
 
 ## License
 
