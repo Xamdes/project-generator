@@ -14,13 +14,15 @@
     * adds packages to atom
   * commit
     * commits to this projects git
-  * git-config
+  * git-config [name] [email]
     * sets configuration locally for this projects git
-  * git-global-config
+    * use single quotes for name if there are spaces ex: 'Jane Doe'
+  * git-global-config [name] [email]
     * sets the global git configuration for the user
+    * use single quotes for name if there are spaces ex: 'Jane Doe'
   * pair [user-one user-one-email user-two user-two-email]
     * Creates a pairing file for git
-    * Wrap user-one and user-two in singles quotes for full names
+    * Wrap user-one and user-two in singles quotes ex: 'Jane Doe'
   * unset-global-git
     * unsets the global configuration for git username and email
 
