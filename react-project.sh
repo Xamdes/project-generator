@@ -7,34 +7,48 @@ cd $1
 echo "{
   \"name\": \"$1\",
   \"version\": \"1.0.0\",
-  \"description\": \"Description text for project\",
+  \"description\": \"Epicodus Tutorial for creating a help queue\",
   \"main\": \"index.js\",
   \"scripts\": {
     \"npm\": \"npm\",
     \"fresh\": \"npm install; webpack\",
     \"gen\": \"./bin/generate-component.sh\",
     \"commit\": \"./bin/commit.sh\",
+    \"git-config\": \"./bin/git-config.sh\",
     \"webpack\": \"webpack\",
     \"webpack-dev-server\": \"webpack-dev-server\",
     \"start\": \"webpack-dev-server --open\",
-    \"web\": \"open http://localhost:8080\"
+    \"web\": \"open http://localhost:8080\",
+    \"lint\": \"eslint 'src/**' 'src/**/**'; exit 0\",
+    \"lint-fix\": \"eslint 'src/**' 'src/**/**' --fix; exit 0\"
   },
-  \"author\": \"John Doe\",
+  \"author\": \"Jane Doe\",
   \"license\": \"MIT\",
   \"dependencies\": {
+    \"ajv\": \"^6.5.3\",
+    \"bootstrap\": \"^4.1.3\",
+    \"jquery\": \"^3.3.1\",
+    \"popper.js\": \"^1.14.4\",
     \"prop-types\": \"^15.5.10\",
     \"react\": \"^15.5.4\",
-    \"react-dom\": \"^15.5.4\"
+    \"react-dom\": \"^15.5.4\",
+    \"webpack\": \"^4.17.2\"
   },
   \"devDependencies\": {
-    \"babel-core\": \"^6.24.1\",
-    \"babel-loader\": \"^7.0.0\",
-    \"babel-preset-es2015\": \"^6.24.1\",
-    \"babel-preset-react\": \"^6.24.1\",
-    \"html-webpack-plugin\": \"^2.29.0\",
+    \"@babel/cli\": \"^7.0.0\",
+    \"@babel/core\": \"^7.0.0\",
+    \"@babel/preset-env\": \"^7.0.0\",
+    \"@babel/preset-react\": \"^7.0.0\",
+    \"babel-loader\": \"^8.0.2\",
+    \"css-loader\": \"^1.0.0\",
+    \"eslint\": \"^5.5.0\",
+    \"eslint-loader\": \"^2.1.0\",
+    \"eslint-plugin-react\": \"^7.11.1\",
+    \"html-webpack-plugin\": \"^3.2.0\",
     \"react-hot-loader\": \"^3.0.0-beta.7\",
-    \"webpack\": \"^3.4.0\",
-    \"webpack-dev-server\": \"^2.5.0\"
+    \"style-loader\": \"^0.23.0\",
+    \"webpack-cli\": \"^3.1.0\",
+    \"webpack-dev-server\": \"^3.1.7\"
   }
 }
 " > package.json
@@ -52,19 +66,20 @@ echo "#!/usr/bin/env bash
 cd ./src/components
 
 echo \"import React from \\\"react\\\";
-import PropTypes from \\\"prop-types\\\";
+//import PropTypes from \\\"prop-types\\\";
 
 function \$1(){
   return (
-  <div>
-  Insert Code Here
-  </div>
+    <div>
+      Insert Code Here
+    </div>
   );
 }
-
+/*
 \$1.propTypes = {
-  // example: PropTypes.string,
+  example: PropTypes.string,
 };
+*/
 
 export default \$1;
 
@@ -86,6 +101,12 @@ optionalEnum: PropTypes.oneOf(['ExampleClass', 'AnotherExampleClass']),
 \" > \"\$1.jsx\"
 " > ./bin/generate-component.sh
 
+echo  "#!/usr/bin/env bash
+
+git config user.name \"\$1\"
+git config user.email \"\$2\"
+" > ./bin/git-config.sh
+
 chmod 755 ./bin/*.sh
 
 mkdir src
@@ -97,7 +118,12 @@ npm install
 
 npm run gen App
 
-echo "import React from 'react';
+echo "import 'bootstrap/dist/css/bootstrap.min.css';
+/*eslint-disable */
+import $ from 'jquery';
+import Popper from 'popper.js';
+/*eslint-enable */
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
@@ -115,7 +141,7 @@ render(App);
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    render(App)
+    render(App);
   });
 }
 " > ./src/index.jsx
@@ -168,12 +194,14 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  //development, production or none
+  mode: 'development',
 
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    resolve(__dirname, \"src\") + \"/index.jsx\"
+    resolve(__dirname, 'src') + '/index.jsx'
   ],
 
   output: {
@@ -198,17 +226,31 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: \"babel-loader\",
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+          emitWarning: true,
+          configFile: './.eslintrc.json'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
           presets: [
-            [\"es2015\", {\"modules\": false}],
-            \"react\",
+            '@babel/preset-react',
+            '@babel/preset-env'
           ],
           plugins: [
-            \"react-hot-loader/babel\"
+            'react-hot-loader/babel'
           ]
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ],
   },
@@ -220,7 +262,7 @@ module.exports = {
       template:'template.ejs',
       appMountId: 'react-app-root',
       title: 'React Help Queue',
-      filename: resolve(__dirname, \"build\", \"index.html\"),
+      filename: resolve(__dirname, 'build', 'index.html'),
     }),
   ]
 
