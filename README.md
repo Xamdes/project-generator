@@ -6,7 +6,7 @@
 
 ## Instructions
 
-  * Use npm run [command] [parameters]
+  **Use npm run [command] [parameters]**
 
   **Command List**  
 
