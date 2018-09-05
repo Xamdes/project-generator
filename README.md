@@ -1,4 +1,4 @@
-# commands
+====== commands
 
 ## Author(s)
 
@@ -6,7 +6,7 @@
 
 ## Instructions
 
-  **npm run [command] [parameters]**
+------  **npm run [command] [parameters]**
 
   **Command List**  
 
