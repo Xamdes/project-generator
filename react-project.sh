@@ -146,9 +146,11 @@ if (module.hot) {
 }
 " > ./src/index.jsx
 
-echo ".DS-STORE
+echo "#Start gitignore
+.DS-STORE
 node_modules
 build
+# John they did not read my project if you are seeing this
 " > .gitignore
 
 echo "MIT License
@@ -268,3 +270,57 @@ module.exports = {
 
 };
 " > webpack.config.js
+
+echo "{
+  \"env\": {
+    \"browser\": true,
+    \"es6\": true,
+    \"amd\": true,
+    \"node\": true
+  },
+  \"extends\": \"eslint:recommended\",
+  \"parserOptions\": {
+    \"ecmaFeatures\": {
+      \"jsx\": true
+    },
+    \"ecmaVersion\": 2018,
+    \"sourceType\": \"module\"
+  },
+  \"plugins\": [
+    \"react\"
+  ],
+  \"rules\": {
+    \"react/jsx-uses-vars\": 2,
+    \"react/jsx-uses-react\": 2,
+    \"react/jsx-no-duplicate-props\": 2,
+    \"react/jsx-no-undef\": 2,
+    \"react/no-multi-comp\": 2,
+    \"react/jsx-indent-props\": [
+      \"error\",
+      2
+    ],
+    \"react/jsx-pascal-case\": 2,
+    \"react/prop-types\": 2,
+    \"react/jsx-indent\": [
+      \"error\",
+      2
+    ],
+    \"indent\": [
+      \"error\",
+      2
+    ],
+    \"linebreak-style\": [
+      \"error\",
+      \"unix\"
+    ],
+    \"quotes\": [
+      \"error\",
+      \"single\"
+    ],
+    \"semi\": [
+      \"error\",
+      \"always\"
+    ]
+  }
+}
+" > .eslintrc.json
