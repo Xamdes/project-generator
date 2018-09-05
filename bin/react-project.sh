@@ -17,7 +17,8 @@ echo "{
     \"git-config\": \"./bin/git-config.sh\",
     \"webpack\": \"webpack\",
     \"webpack-dev-server\": \"webpack-dev-server\",
-    \"start\": \"webpack-dev-server --open\",
+    \"start\": \"webpack-dev-server\",
+    \"start-web\": \"webpack-dev-server --open\",
     \"web\": \"open http://localhost:8080\",
     \"lint\": \"eslint 'src/**' 'src/**/**'; exit 0\",
     \"lint-fix\": \"eslint 'src/**' 'src/**/**' --fix; exit 0\"
@@ -32,6 +33,7 @@ echo "{
     \"prop-types\": \"^15.5.10\",
     \"react\": \"^15.5.4\",
     \"react-dom\": \"^15.5.4\",
+    \"styled-components\": \"^3.4.5\",
     \"styled-jsx\": \"^3.0.2\",
     \"webpack\": \"^4.17.2\"
   },
@@ -71,15 +73,16 @@ echo \"import styled from 'styled-components';
 function \$1(){
   return (
     <Main>
-      <h1>\$1</h1>
+      <h1>\$1 Component Created Successfully</h1>
     </Main>
   );
 }
 
 const Main = styled.div\\\`
-  backgroundColor: #ecf0f1;
+  background-color: black;
   fontFamily: sans-serif;
   paddingTop: 50px;
+  color: white;
   \\\`
 ;
 
