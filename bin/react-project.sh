@@ -376,3 +376,6 @@ const Main = styled.div\`
 ;
 \`\`\`
 " > ./src/components/README.md
+
+echo "*.md
+" > .eslintignore
