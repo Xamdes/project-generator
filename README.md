@@ -9,7 +9,7 @@
   * Commands for making things easier
     * Use npm run [command] [parameters]
 
-  **** Command List ****
+  *Command List*
   *
 
 ## License
