@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 if [ -g == "$1" ];
 then
   git config --global user.name "$2"

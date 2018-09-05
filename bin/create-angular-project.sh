@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+cd ..
 ng new $1
 cd ./$1
 npm install ajv hoek bootstrap --save

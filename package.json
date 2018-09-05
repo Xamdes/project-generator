@@ -1,0 +1,32 @@
+{
+  "name": "commands",
+  "version": "1.0.0",
+  "description": "Commands to make creating different projects easier",
+  "main": "index.js",
+  "scripts": {
+    "angular": "./bin/create-angular-project.sh",
+    "atom": "./bin/atom-packages.sh; exit 0",
+    "commit": "./bin/commit.sh",
+    "solution": "./bin/create-solution.sh",
+    "git-config": "./bin/git-config.sh",
+    "git-global-config": "./bin/git-config.sh -g",
+    "javascript": "./bin/javascript-setup.sh",
+    "javascript-api": "./bin/javascript-api-setup.sh",
+    "react": "./bin/react-project.sh",
+    "pair": "./bin/pair.sh",
+    "unset-global-git": "./bin/unset-global-git.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xamdes/commands.git"
+  },
+  "keywords": [
+    "utility"
+  ],
+  "author": "Steven Colburn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xamdes/commands/issues"
+  },
+  "homepage": "https://github.com/Xamdes/commands#readme"
+}
