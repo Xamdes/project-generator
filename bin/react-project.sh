@@ -32,6 +32,7 @@ echo "{
     \"prop-types\": \"^15.5.10\",
     \"react\": \"^15.5.4\",
     \"react-dom\": \"^15.5.4\",
+    \"react-router-dom\": \"^4.0.0\",
     \"styled-components\": \"^3.4.5\",
     \"styled-jsx\": \"^3.0.2\",
     \"webpack\": \"^4.17.2\"
@@ -79,8 +80,8 @@ function \$1(){
 
 const Main = styled.div\\\`
   background-color: black;
-  fontFamily: sans-serif;
-  paddingTop: 50px;
+  font-family: sans-serif;
+  padding-top: 50px;
   color: white;
   \\\`
 ;
@@ -109,11 +110,14 @@ npm run gen App
 echo "import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
 import { AppContainer } from 'react-hot-loader';
+import { HashRouter } from 'react-router-dom';
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
-      <Component/>
+      <HashRouter>
+        <Component/>
+      </HashRouter>
     </AppContainer>,
     document.getElementById('react-app-root')
   );
@@ -368,9 +372,9 @@ const ButtonTest = styled.button\`
 \`\`\`
 \`\`\`
 const Main = styled.div\`
-  backgroundColor: #ecf0f1;
-  fontFamily: sans-serif;
-  paddingTop: 50px;
+  background-color: #ecf0f1;
+  font-family: sans-serif;
+  padding-top: 50px;
   \`
 ;
 \`\`\`
