@@ -88,6 +88,12 @@ padding-top: 50px;
 color: white;
 \\\`;
 
+/*
+* Copy to other files
+* import \$1 from './\$1';
+* <\$1/>
+*/
+
 \" > \"\$1.jsx\"
 " > ./bin/generate-component.sh
 
