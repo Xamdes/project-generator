@@ -41,6 +41,15 @@
     * React project setup
     * Setup includes using bootstrap
 
+## NPX Windows Problems
+
+When using npx on Windows if you get the error  
+"The "path" argument must be of type string. Received type undefined"  
+make sure for the order of folder in the System Environment Path
+C:\Users\[Username]\AppData\Roaming\npm  
+C:\Program Files (x86)\nodejs  
+Don't use the User Variable path
+
 ## License
 
 MIT License
