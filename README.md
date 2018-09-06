@@ -6,6 +6,22 @@
 
 ## Instructions
 
+### **Use NPX**
+
+  * npx -p @xamdes/project-generator -c 'create-react-[os] [project-name]'
+    * creates project in current location
+
+### **Global Install**
+
+  **npm i -g @xamdes/project-generator**
+
+  **Command List**
+
+  * create-react-mac [project-name]
+    * creates project in current location
+  * create-react-win [project-name]
+    * creates project in current location
+
 ###  **npm run [command] [parameters]**
 
   **Command List**  
@@ -37,7 +53,7 @@
     * Javascript setup
   * javascript-api [project-name]
     * Javascript setup using an api
-  * react [project-name]
+  * create-react [project-name]
     * React project setup
     * Setup includes using bootstrap
 
