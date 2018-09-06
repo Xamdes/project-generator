@@ -6,6 +6,11 @@
 
 ## Instructions
 
+### **Use NPX**
+
+  * npx -p @xamdes/project-generator -c 'create-react [project-name]'
+    * creates project in current location
+
 ### **Global Install**
 
   **npm i -g @xamdes/project-generator**
