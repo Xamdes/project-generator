@@ -1,4 +1,4 @@
-# commands
+# Project Generator
 
 ## Author(s)
 
