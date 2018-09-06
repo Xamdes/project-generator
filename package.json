@@ -4,17 +4,17 @@
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
   "scripts": {
-    "angular": "./bin/create-angular-project.sh",
+    "angular": "bash ./bin/create-angular-project.sh",
     "atom": "bash ./bin/atom-packages.sh; exit 0",
     "commit": "bash ./bin/commit.sh",
-    "solution": "./bin/create-solution.sh",
-    "git-config": "./bin/git-config.sh",
-    "git-global-config": "./bin/git-config.sh -g",
-    "javascript": "./bin/javascript-setup.sh",
-    "javascript-api": "./bin/javascript-api-setup.sh",
-    "react": "./bin/react-project.sh",
-    "pair": "./bin/pair.sh",
-    "unset-global-git": "./bin/unset-global-git.sh"
+    "solution": "bash ./bin/create-solution.sh",
+    "git-config": "bash ./bin/git-config.sh",
+    "git-global-config": "bash ./bin/git-config.sh -g",
+    "javascript": "bash ./bin/javascript-setup.sh",
+    "javascript-api": "bash ./bin/javascript-api-setup.sh",
+    "react": "bash ./bin/react-project.sh",
+    "pair": "bash ./bin/pair.sh",
+    "unset-global-git": "bash ./bin/unset-global-git.sh"
   },
   "keywords": [
     "utility"
