@@ -1,5 +1,5 @@
 {
-  "name": "commands",
+  "name": "@xamdes/project-generator",
   "version": "1.0.0",
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
@@ -16,17 +16,17 @@
     "pair": "./bin/pair.sh",
     "unset-global-git": "./bin/unset-global-git.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Xamdes/commands.git"
-  },
   "keywords": [
     "utility"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xamdes/project-generator.git"
+  },
   "author": "Steven Colburn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Xamdes/commands/issues"
+    "url": "https://github.com/Xamdes/project-generator/issues"
   },
-  "homepage": "https://github.com/Xamdes/commands#readme"
+  "homepage": "https://github.com/Xamdes/project-generator#readme"
 }
