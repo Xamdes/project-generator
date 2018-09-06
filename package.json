@@ -4,7 +4,7 @@
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
   "bin":{
-    "react": "./bin/react-project.sh"
+    "create-react": "./bin/react-project.sh"
   },
   "scripts": {
     "angular": "bash ./bin/create-angular-project.sh",
@@ -17,7 +17,7 @@
     "npm": "npm",
     "pair": "bash ./bin/pair.sh",
     "publish-public": "npm publish --access=public",
-    "react": "bash ./bin/react-project.sh",
+    "create-react": "bash ./bin/react-project.sh",
     "solution": "bash ./bin/create-solution.sh",
     "unset-global-git": "bash ./bin/unset-global-git.sh"
   },
