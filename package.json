@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "angular": "./bin/create-angular-project.sh",
-    "atom": "./bin/atom-packages.sh; exit 0",
-    "commit": "./bin/commit.sh",
+    "atom": "bash ./bin/atom-packages.sh; exit 0",
+    "commit": "bash ./bin/commit.sh",
     "solution": "./bin/create-solution.sh",
     "git-config": "./bin/git-config.sh",
     "git-global-config": "./bin/git-config.sh -g",
