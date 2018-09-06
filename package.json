@@ -19,7 +19,7 @@
     "javascript-api": "bash ./bin/javascript-api-setup.sh",
     "npm": "npm",
     "pair": "bash ./bin/pair.sh",
-    "publish-public": "npm publish --access=public",
+    "publish-public": "npm version patch;npm publish --access=public",
     "solution": "bash ./bin/create-solution.sh",
     "unset-global-git": "bash ./bin/unset-global-git.sh"
   },
