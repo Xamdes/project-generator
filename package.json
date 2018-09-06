@@ -1,15 +1,18 @@
 {
   "name": "@xamdes/project-generator",
-  "version": "1.1.1",
+  "version": "1.1.7",
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
   "bin":{
-    "react": "./bin/react-project.sh"
+    "create-react-win": "./bin/react-project.sh",
+    "create-react-mac": "./bin/react-project.sh"
   },
   "scripts": {
     "angular": "bash ./bin/create-angular-project.sh",
     "atom": "bash ./bin/atom-packages.sh; exit 0",
     "commit": "bash ./bin/commit.sh",
+    "create-react-win": "bash ./bin/react-project.sh",
+    "create-react-mac": "./bin/react-project.sh",
     "git-config": "bash ./bin/git-config.sh",
     "git-global-config": "bash ./bin/git-config.sh -g",
     "javascript": "bash ./bin/javascript-setup.sh",
@@ -17,7 +20,6 @@
     "npm": "npm",
     "pair": "bash ./bin/pair.sh",
     "publish-public": "npm publish --access=public",
-    "react": "bash ./bin/react-project.sh",
     "solution": "bash ./bin/create-solution.sh",
     "unset-global-git": "bash ./bin/unset-global-git.sh"
   },

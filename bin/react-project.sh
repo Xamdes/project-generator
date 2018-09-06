@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bash
 
 mkdir $1
 cd $1
@@ -11,9 +11,9 @@ echo "{
   \"scripts\": {
     \"npm\": \"npm\",
     \"fresh\": \"npm install; webpack\",
-    \"gen\": \"./bin/generate-component.sh\",
-    \"commit\": \"./bin/commit.sh\",
-    \"git-config\": \"./bin/git-config.sh\",
+    \"gen\": \"bash ./bin/generate-component.sh\",
+    \"commit\": \"bash ./bin/commit.sh\",
+    \"git-config\": \"bash ./bin/git-config.sh\",
     \"webpack\": \"webpack\",
     \"webpack-dev-server\": \"webpack-dev-server\",
     \"start\": \"webpack-dev-server\",
