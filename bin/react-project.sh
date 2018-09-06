@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-cd ..
 mkdir $1
 cd $1
 

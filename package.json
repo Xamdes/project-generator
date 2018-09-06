@@ -1,8 +1,11 @@
 {
   "name": "@xamdes/project-generator",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
+  "bin":{
+    "react": "./bin/react-project.sh"
+  },
   "scripts": {
     "angular": "bash ./bin/create-angular-project.sh",
     "atom": "bash ./bin/atom-packages.sh; exit 0",
