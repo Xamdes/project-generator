@@ -1,9 +1,9 @@
 {
   "name": "@xamdes/project-generator",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
-  "bin":{
+  "bin": {
     "create-react-win": "./bin/react-project.sh",
     "create-react-mac": "./bin/react-project.sh"
   },
