@@ -1,4 +1,4 @@
-# commands
+# Project Generator
 
 ## Author(s)
 
@@ -8,7 +8,7 @@
 
 ### **Use NPX**
 
-  * npx -p @xamdes/project-generator -c 'create-react [project-name]'
+  * npx -p @xamdes/project-generator -c 'create-react-[os] [project-name]'
     * creates project in current location
 
 ### **Global Install**
@@ -17,7 +17,9 @@
 
   **Command List**
 
-  * create-react [project-name]
+  * create-react-mac [project-name]
+    * creates project in current location
+  * create-react-win [project-name]
     * creates project in current location
 
 ###  **npm run [command] [parameters]**
@@ -55,14 +57,16 @@
     * React project setup
     * Setup includes using bootstrap
 
-## NPX Windows Problems
+## Known NPX Problems for Windows Users
 
-When using npx on Windows if you get the error  
+**When using npx on Windows if you get the error  
 "The "path" argument must be of type string. Received type undefined"  
 make sure for the order of folder in the System Environment Path  
-C:\Users\[Username]\AppData\Roaming\npm  
+C:\Users\\[Username]\AppData\Roaming\npm  
 C:\Program Files (x86)\nodejs  
-Don't use the User Variable path  
+Don't use the User Variable path **
+
+**If you are getting errors running scripts from package.json make sure that bash is prepended to scripts which start with 'bash ./bin/\*.sh**'
 
 ## License
 
