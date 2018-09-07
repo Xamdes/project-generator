@@ -25,7 +25,8 @@
     "unset-global-git": "bash ./bin/unset-global-git.sh"
   },
   "keywords": [
-    "utility"
+    "utility",
+    "react"
   ],
   "repository": {
     "type": "git",
