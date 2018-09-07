@@ -59,14 +59,16 @@
 
 ## Known NPX Problems for Windows Users
 
-**When using npx on Windows if you get the error  
-"The "path" argument must be of type string. Received type undefined"  
-make sure for the order of folder in the System Environment Path  
+**When using npx on Windows if you get the error**  
+**"The "path" argument must be of type string. Received type undefined"**  
+Make sure the path order in the System Environment Path is  
 C:\Users\\[Username]\AppData\Roaming\npm  
 C:\Program Files (x86)\nodejs  
-Don't use the User Variable path **
+Don't use the User Variable path  
 
 **If you are getting errors running scripts from package.json make sure that bash is prepended to scripts which start with 'bash ./bin/\*.sh**'
+
+**If you get an error running npm run lint or npm run lint-fix try removing the single quotes eslint src/\*\* src/\*\*/\*\* and/or remove ;exit 0**'
 
 ## License
 
