@@ -21,7 +21,7 @@
     "pair": "bash ./bin/pair.sh",
     "patch": "npm version patch",
     "publish-public": "npm publish --access=public",
-    "push": "npm run patch && git push origin master && npm run publish-public'",
+    "push": "npm run patch && git push origin master && npm run publish-public",
     "solution": "bash ./bin/create-solution.sh",
     "unset-global-git": "bash ./bin/unset-global-git.sh"
   },
