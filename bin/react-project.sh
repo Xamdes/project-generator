@@ -9,18 +9,17 @@ echo "{
   \"description\": \"Epicodus Tutorial for creating a help queue\",
   \"main\": \"index.js\",
   \"scripts\": {
-    \"npm\": \"npm\",
-    \"fresh\": \"npm install; webpack\",
-    \"gen\": \"bash ./bin/generate-component.sh\",
     \"commit\": \"bash ./bin/commit.sh\",
+    \"fresh\": \"npm install && webpack\",
+    \"gen\": \"bash ./bin/generate-component.sh\",
     \"git-config\": \"bash ./bin/git-config.sh\",
-    \"webpack\": \"webpack\",
-    \"webpack-dev-server\": \"webpack-dev-server\",
+    \"lint\": \"eslint \\\"src/**\\\" \\\"src/**/**\\\" && exit 0\",
+    \"lint-fix\": \"eslint \\\"src/**\\\" \\\"src/**/**\\\" --fix && exit 0\",
     \"start\": \"webpack-dev-server\",
     \"start-web\": \"webpack-dev-server --open\",
     \"web\": \"open http://localhost:8080\",
-    \"lint\": \"eslint 'src/**' 'src/**/**'; exit 0\",
-    \"lint-fix\": \"eslint 'src/**' 'src/**/**' --fix; exit 0\"
+    \"webpack\": \"webpack\",
+    \"webpack-dev-server\": \"webpack-dev-server\"
   },
   \"author\": \"Jane Doe\",
   \"license\": \"MIT\",
@@ -174,7 +173,7 @@ touch README.md
 
 echo "<!DOCTYPE html>
 <head>
-  <meta charset="utf-8">
+  <meta charset=\"utf-8\">
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
   <body>
