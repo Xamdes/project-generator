@@ -64,6 +64,7 @@ git commit -m \"\$1\"
 " > ./bin/commit.sh
 
 echo "#!/usr/bin/env bash
+PREPEND=\${2:-false}
 
 cd ./src/components
 
