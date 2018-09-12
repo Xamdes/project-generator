@@ -1,6 +1,6 @@
 {
   "name": "@xamdes/project-generator",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "Commands to make creating different projects easier",
   "main": "index.js",
   "bin": {
