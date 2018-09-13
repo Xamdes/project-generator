@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+\#!/usr/bin/env bash
 
 mkdir $1
 cd $1
@@ -238,7 +238,8 @@ module.exports = {
       jQuery: 'jquery',
       Popper: 'popper.js',
       React: 'react',
-      ReactDOM: 'react-dom'
+      ReactDOM: 'react-dom',
+      PropTypes: 'prop-types'
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -292,7 +293,8 @@ echo "{
     \"$\": true,
     \"jQuery\": true,
     \"Popper\": true,
-    \"React\": true
+    \"React\": true,
+    \"PropTypes\": true
   },
   \"env\": {
     \"browser\": true,
@@ -300,7 +302,9 @@ echo "{
     \"amd\": true,
     \"node\": true
   },
-  \"extends\": \"eslint:recommended\",
+  \"extends\": [\"eslint:recommended\",
+    \"plugin:react/recommended\"
+  ],
   \"parserOptions\": {
     \"ecmaFeatures\": {
       \"jsx\": true
@@ -312,6 +316,11 @@ echo "{
     \"react\"
   ],
   \"rules\": {
+    \"react/jsx-handler-names\": 2,
+    \"react/require-render-return\": 2,
+    \"react/no-unused-state\": 2,
+    \"react/prefer-stateless-function\": 2,
+    \"react/no-direct-mutation-state\": 2,
     \"react/jsx-key\": 2,
     \"react/jsx-uses-vars\": 2,
     \"react/jsx-uses-react\": 2,
