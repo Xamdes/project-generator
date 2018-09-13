@@ -30,7 +30,7 @@
     * adds packages to atom
   * commit [message]
     * commits to this projects git
-    * messages should be wrapped in singles quotes of there are spaces
+    * messages should be wrapped in singles quotes if there are spaces
   * git-config [name] [email]
     * sets configuration locally for this projects git
     * use single quotes for name if there are spaces ex: 'Jane Doe'
