@@ -5,17 +5,20 @@
   "main": "index.js",
   "bin": {
     "create-react-win": "./bin/react-project.sh",
-    "create-react-mac": "./bin/react-project.sh"
+    "create-react-mac": "./bin/react-project.sh",
+    "create-javascript-win": "./bin/javascript-setup.sh",
+    "create-javascript-mac": "./bin/javascript-setup.sh"
   },
   "scripts": {
     "angular": "bash ./bin/create-angular-project.sh",
     "atom": "bash ./bin/atom-packages.sh; exit 0",
     "commit": "bash ./bin/commit.sh",
-    "create-react-win": "bash ./bin/react-project.sh",
+    "create-javascript-mac": "./bin/javascript-setup.sh",
+    "create-javascript-win": "bash ./bin/javascript-setup.sh",
     "create-react-mac": "./bin/react-project.sh",
+    "create-react-win": "bash ./bin/react-project.sh",
     "git-config": "bash ./bin/git-config.sh",
     "git-global-config": "bash ./bin/git-config.sh -g",
-    "javascript": "bash ./bin/javascript-setup.sh",
     "javascript-api": "bash ./bin/javascript-api-setup.sh",
     "npm": "npm",
     "pair": "bash ./bin/pair.sh",
